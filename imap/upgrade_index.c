@@ -155,7 +155,7 @@ int upgrade_index(struct mailbox *mailbox)
     const char *expunge_base = NULL;
     unsigned long expunge_len = 0;   /* mapped size */
     unsigned long emapnum;
-    bit32 eversion = 0, eoffset = 0, expungerecord_size = 0;
+    bit32 eoffset = 0, expungerecord_size = 0;
     struct expunge_data *expunge_data = NULL;
     struct mailbox_repack *repack = NULL;
     int r;
@@ -293,7 +293,6 @@ int upgrade_index(struct mailbox *mailbox)
 
 	/* use the expunge file's header information just in case
 	 * versions are skewed for some reason */
-	eversion = ntohl(*((bit32 *)(expunge_base+OFFSET_MINOR_VERSION)));
 	eoffset = ntohl(*((bit32 *)(expunge_base+OFFSET_START_OFFSET)));
 	expungerecord_size = ntohl(*((bit32 *)(expunge_base+OFFSET_RECORD_SIZE)));
 
